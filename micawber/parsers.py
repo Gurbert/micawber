@@ -1,3 +1,4 @@
+from flask import current_app
 import re
 from .compat import text_type
 try:
@@ -13,7 +14,7 @@ except ImportError:
         from bs4 import BeautifulSoup
         bs_kwargs = replace_kwargs = {'features': 'html.parser'}
     except ImportError:
-        BeautifulSoup = None
+        BeautifulSoup = Nonefprint
 
 from micawber.exceptions import ProviderException
 
@@ -72,6 +73,7 @@ def parse_text_full(text, providers, urlize_all=True, handler=full_handler, **pa
     for url in all_urls:
         if url in extracted_urls:
             replacements[url] = handler(url, extracted_urls[url], **params)
+            replacements['provider_name'] = extracted_urls[url]['provider_name']
         elif urlize_all:
             replacements[url] = urlize(url)
 
@@ -85,7 +87,10 @@ def parse_text_full(text, providers, urlize_all=True, handler=full_handler, **pa
 
     # replace the URLs in order, offsetting the indices each go
     for indx, (start, end, url) in enumerate(matches):
-        replacement = replacements[url]
+        if 'provider_name' in replacements and current_app.config['STYLE_EMBED'] == True:
+            replacement = add_bs4_styling(replacements[url], replacements['provider_name'])
+        else:
+            replacement = replacements[url]
         difference = len(replacement) - len(url)
 
         # insert the replacement between two slices of text surrounding the
@@ -97,7 +102,6 @@ def parse_text_full(text, providers, urlize_all=True, handler=full_handler, **pa
         for j in range(indx + 1, len(matches)):
             matches[j][0] += difference
             matches[j][1] += difference
-
     return text
 
 def parse_text(text, providers, urlize_all=True, handler=full_handler, block_handler=inline_handler, **params):
@@ -138,6 +142,7 @@ def parse_html(html, providers, urlize_all=True, handler=full_handler,
             else:
                 url_handler = block_handler
 
+            # provider = url_unescaped['provider_name'] or 'None'
             url_unescaped = url.string
             replacement = parse_text_full(url_unescaped, providers, urlize_all, url_handler, **params)
             url.replaceWith(BeautifulSoup(replacement, **replace_kwargs))
@@ -180,3 +185,15 @@ def _inside_skip(soup_elem):
             return True
         parent = parent.parent
     return False
+
+# The embed for some providers will be styled using bootstrap4.
+# The function below will wrap the embeds with bootstrap classes.
+# For it to work you have to set STYLE_EMBED = True in the config.
+def add_bs4_styling(embed, provider):
+    class_added = embed.replace('<iframe', '<iframe class="embed-responsive-item"')
+    if provider in ('Dailymotion', 'YouTube', 'SlideShare', 'Vimeo'):
+        return f'<div class="embed-responsive embed-responsive-16by9">{class_added}</div>'
+    elif provider == 'SoundCloud':
+        return f'<div class="embed-responsive embed-responsive-21by9">{class_added}</div>'
+    else:
+        return embed
