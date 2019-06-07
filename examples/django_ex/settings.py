@@ -9,12 +9,12 @@ MICAWBER_TEMPLATE_EXTENSIONS = [
     ('oembed_no_urlize', {'urlize_all': False}),
 ]
 
-# by default, micawber will use the "bootstrap_basic" providers, but should you
+# by default, micawber_bs4_classes will use the "bootstrap_basic" providers, but should you
 # wish to use embedly you can try out the second example.  You can also provide
 # your own ProviderRegistry with a path to a module and either a callable or
 # ProviderRegistry instance
-MICAWBER_PROVIDERS = 'micawber.contrib.mcdjango.providers.bootstrap_basic'
-#MICAWBER_PROVIDERS = 'micawber.contrib.mcdjango.providers.bootstrap_embedly'
+MICAWBER_PROVIDERS = 'micawber_bs4_classes.contrib.mcdjango.providers.bootstrap_basic'
+#MICAWBER_PROVIDERS = 'micawber_bs4_classes.contrib.mcdjango.providers.bootstrap_embedly'
 
 # if you are using embed.ly you can specify an API key that will be used with
 # the bootstrap_embedly provider setting
@@ -82,5 +82,5 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.staticfiles',
-    'micawber.contrib.mcdjango',
+    'micawber_bs4_classes.contrib.mcdjango',
 )

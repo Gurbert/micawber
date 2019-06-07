@@ -6,7 +6,7 @@ readme = f.read()
 f.close()
 
 setup(
-    name='micawber',
+    name='micawber_bs4_classes',
     version='0.4.0',
     description='a small library for extracting rich content from urls',
     long_description=readme,
@@ -15,8 +15,8 @@ setup(
     url='http://github.com/coleifer/micawber/',
     packages=[p for p in find_packages() if not p.startswith('examples')],
     package_data = {
-        'micawber': [
-            'contrib/mcdjango/templates/micawber/*.html',
+        'micawber_bs4_classes': [
+            'contrib/mcdjango/templates/micawber_bs4_classes/*.html',
         ],
     },
     classifiers=[

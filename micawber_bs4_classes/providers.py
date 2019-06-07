@@ -29,7 +29,7 @@ class Provider(object):
     def __init__(self, endpoint, timeout=3.0, user_agent=None, **kwargs):
         self.endpoint = endpoint
         self.socket_timeout = timeout
-        self.user_agent = user_agent or 'python-micawber'
+        self.user_agent = user_agent or 'python-micawber_bs4_classes'
         self.base_params = {'format': 'json'}
         self.base_params.update(kwargs)
 
@@ -251,7 +251,7 @@ def bootstrap_oembed(cache=None, registry=None, **params):
     for item in json_data:
         for endpoint in item['endpoints']:
             # Possibly this provider only supports discovery via <link> tags,
-            # which is not supported by micawber.
+            # which is not supported by micawber_bs4_classes.
             if 'schemes' not in endpoint:
                 continue
 

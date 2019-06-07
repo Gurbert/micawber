@@ -1,5 +1,5 @@
 import pprint
-from micawber import bootstrap_oembed, ProviderException
+from micawber_bs4_classes import bootstrap_oembed, ProviderException
 try:
     read_input = raw_input
 except NameError:

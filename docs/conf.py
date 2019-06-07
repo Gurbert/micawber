@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# micawber documentation build configuration file, created by
+# micawber_bs4_classes documentation build configuration file, created by
 # sphinx-quickstart on Tue Apr 17 13:43:41 2012.
 #
 # This file is execfile()d with the current directory set to its containing dir.
@@ -40,7 +40,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'micawber'
+project = u'micawber_bs4_classes'
 copyright = u'2013, charles leifer'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -183,7 +183,7 @@ latex_elements = {
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'micawber.tex', u'micawber Documentation',
+  ('index', 'micawber_bs4_classes.tex', u'micawber_bs4_classes Documentation',
    u'charles leifer', 'manual'),
 ]
 
@@ -213,7 +213,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'micawber', u'micawber Documentation',
+    ('index', 'micawber_bs4_classes', u'micawber_bs4_classes Documentation',
      [u'charles leifer'], 1)
 ]
 
@@ -227,8 +227,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'micawber', u'micawber Documentation',
-   u'charles leifer', 'micawber', 'One line description of project.',
+  ('index', 'micawber_bs4_classes', u'micawber_bs4_classes Documentation',
+   u'charles leifer', 'micawber_bs4_classes', 'One line description of project.',
    'Miscellaneous'),
 ]
 

@@ -3,7 +3,7 @@ import os
 import sys
 import unittest
 
-from micawber import tests
+from micawber_bs4_classes import tests
 
 
 def run_django_tests():
@@ -15,7 +15,7 @@ def run_django_tests():
     else:
         print('Running django integration tests')
 
-    providers = 'micawber.contrib.mcdjango.mcdjango_tests.tests.test_pr'
+    providers = 'micawber_bs4_classes.contrib.mcdjango.mcdjango_tests.tests.test_pr'
     extensions = (
         ('oembed_no_urlize', {'urlize_all': False}),
     )
@@ -34,8 +34,8 @@ def run_django_tests():
                 'django.contrib.contenttypes',
                 'django.contrib.sessions',
                 'django.contrib.sites',
-                'micawber.contrib.mcdjango',
-                'micawber.contrib.mcdjango.mcdjango_tests',
+                'micawber_bs4_classes.contrib.mcdjango',
+                'micawber_bs4_classes.contrib.mcdjango.mcdjango_tests',
             ],
             TEMPLATES=[
                 {
@@ -62,11 +62,11 @@ def run_django_tests():
     from django.test.runner import DiscoverRunner
     parent = os.path.dirname(os.path.abspath(__file__))
     sys.path.insert(0, parent)
-    return DiscoverRunner().run_tests(['micawber/contrib/mcdjango'])
+    return DiscoverRunner().run_tests(['micawber_bs4_classes/contrib/mcdjango'])
 
 
 def runtests(*test_args):
-    print("Running micawber tests")
+    print("Running micawber_bs4_classes tests")
     errors = failures = False
     suite = unittest.TestLoader().loadTestsFromModule(tests)
     result = unittest.TextTestRunner(verbosity=2).run(suite)
@@ -75,7 +75,7 @@ def runtests(*test_args):
     if result.errors:
         errors = True
     if not (errors or failures):
-        print("All micawber tests passed")
+        print("All micawber_bs4_classes tests passed")
 
     dj_failures = run_django_tests()
 

@@ -16,7 +16,7 @@ except ImportError:
     except ImportError:
         BeautifulSoup = Nonefprint
 
-from micawber.exceptions import ProviderException
+from micawber_bs4_classes.exceptions import ProviderException
 
 
 url_pattern = '(https?://[-A-Za-z0-9+&@#/%?=~_()|!:,.;]*[-A-Za-z0-9+&@#/%=~_|])'

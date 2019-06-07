@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
-from micawber.providers import bootstrap_basic
-from micawber.contrib.mcflask import add_oembed_filters
+from micawber_bs4_classes.providers import bootstrap_basic
+from micawber_bs4_classes.contrib.mcflask import add_oembed_filters
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
