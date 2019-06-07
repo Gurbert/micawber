@@ -14,7 +14,7 @@ setup(
     author_email='coleifer@gmail.com',
     url='https://github.com/Gurbert/micawber_bs4_classes/',
     install_requires=['beautifulsoup4',],
-    download_url = https://github.com/Gurbert/micawber_bs4_classes/archive/0.4.1.tar.gz,
+    download_url = 'https://github.com/Gurbert/micawber_bs4_classes/archive/0.4.1.tar.gz',
     packages=[p for p in find_packages() if not p.startswith('examples')],
     package_data = {
         'micawber_bs4_classes': [
