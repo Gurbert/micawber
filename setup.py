@@ -7,12 +7,12 @@ f.close()
 
 setup(
     name='micawber_bs4_classes',
-    version='0.4.0',
+    version='0.4.1',
     description='a small library for extracting rich content from urls',
     long_description=readme,
-    author='Charles Leifer',
+    author='Charles Leifer', 'Gurbert'
     author_email='coleifer@gmail.com',
-    url='http://github.com/coleifer/micawber/',
+    url='https://github.com/Gurbert/micawber_bs4_classes/',
     packages=[p for p in find_packages() if not p.startswith('examples')],
     package_data = {
         'micawber_bs4_classes': [
@@ -30,7 +30,7 @@ setup(
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3.2',
         'Programming Language :: Python :: 3.3',
-        'Framework :: Django',
+        'Framework :: Flask',
     ],
     test_suite='runtests.runtests',
 )
