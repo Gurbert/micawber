@@ -10,7 +10,7 @@ setup(
     version='0.4.1',
     description='a small library for extracting rich content from urls',
     long_description=readme,
-    author='Charles Leifer', 'Gurbert'
+    author='Charles Leifer',
     author_email='coleifer@gmail.com',
     url='https://github.com/Gurbert/micawber_bs4_classes/',
     packages=[p for p in find_packages() if not p.startswith('examples')],
