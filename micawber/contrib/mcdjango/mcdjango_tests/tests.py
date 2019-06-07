@@ -2,21 +2,21 @@ from django.template import Context
 from django.template import Template
 from django.test import TestCase
 
-from micawber.parsers import parse_text
-from micawber.test_utils import BaseTestCase
-from micawber.test_utils import test_cache
-from micawber.test_utils import test_pr
-from micawber.test_utils import test_pr_cache
-from micawber.test_utils import TestProvider
+from micawber_bs4_classes.parsers import parse_text
+from micawber_bs4_classes.test_utils import BaseTestCase
+from micawber_bs4_classes.test_utils import test_cache
+from micawber_bs4_classes.test_utils import test_pr
+from micawber_bs4_classes.test_utils import test_pr_cache
+from micawber_bs4_classes.test_utils import TestProvider
 
 
 class MicawberDjangoTestCase(TestCase, BaseTestCase):
     def render(self, s, **params):
-        s = '{%% load micawber_tags %%}%s' % s
+        s = '{%% load micawber_bs4_classes_tags %%}%s' % s
         return Template(s).render(Context(params)).strip()
 
     def test_oembed_alt(self):
-        from micawber.contrib.mcdjango import extension
+        from micawber_bs4_classes.contrib.mcdjango import extension
 
         def custom_handler(url, response_data):
             return url
@@ -40,12 +40,12 @@ class MicawberDjangoTestCase(TestCase, BaseTestCase):
         ])
 
     def test_fix_wh(self):
-        from micawber.contrib.mcdjango import fix_width_height
+        from micawber_bs4_classes.contrib.mcdjango import fix_width_height
         self.assertEqual(fix_width_height('300x400', {}), {'maxwidth': 300, 'maxheight': 400})
         self.assertEqual(fix_width_height('300', {}), {'maxwidth': 300})
 
     def test_provider_loading(self):
-        from micawber.contrib.mcdjango import providers
+        from micawber_bs4_classes.contrib.mcdjango import providers
         self.assertEqual(providers, test_pr)
 
     def test_oembed_filter_multiline_plain(self):

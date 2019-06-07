@@ -4,9 +4,9 @@ try:
 except ImportError:
     import json
 
-from micawber import *
-from micawber.parsers import BeautifulSoup, bs_kwargs
-from micawber.providers import make_key
+from micawber_bs4_classes import *
+from micawber_bs4_classes.parsers import BeautifulSoup, bs_kwargs
+from micawber_bs4_classes.providers import make_key
 
 
 class TestProvider(Provider):

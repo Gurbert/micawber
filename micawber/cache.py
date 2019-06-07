@@ -38,7 +38,7 @@ class PickleCache(Cache):
 
 if Redis:
     class RedisCache(Cache):
-        def __init__(self, namespace='micawber', **conn):
+        def __init__(self, namespace='micawber_bs4_classes', **conn):
             self.namespace = namespace
             self.key_fn = lambda self, k: '%s.%s' % (self.namespace, k)
             self.conn = Redis(**conn)

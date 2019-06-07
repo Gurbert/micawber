@@ -1,6 +1,6 @@
 import re
 
-from micawber.providers import Provider
+from micawber_bs4_classes.providers import Provider
 
 
 class ImageProvider(Provider):
@@ -9,7 +9,7 @@ class ImageProvider(Provider):
 
     Usage:
 
-    pr = micawber.bootstrap_basic()
+    pr = micawber_bs4_classes.bootstrap_basic()
     pr.register(ImageProvider.regex, ImageProvider(''))
     """
     regex = 'http://.+?\.(jpg|gif|png)'
@@ -28,7 +28,7 @@ class GoogleMapsProvider(Provider):
 
     Usage:
 
-    pr = micawber.bootstrap_basic()
+    pr = micawber_bs4_classes.bootstrap_basic()
     pr.register(GoogleMapsProvider.regex, GoogleMapsProvider(''))
     """
     regex = r'^https?://maps.google.com/maps\?([^\s]+)'

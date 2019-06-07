@@ -1,5 +1,5 @@
-from micawber import *
-from micawber.test_utils import test_pr, test_cache, test_pr_cache, TestProvider, BaseTestCase
+from micawber_bs4_classes import *
+from micawber_bs4_classes.test_utils import test_pr, test_cache, test_pr_cache, TestProvider, BaseTestCase
 
 
 class ProviderTestCase(BaseTestCase):

@@ -6,8 +6,8 @@ from django.conf import settings
 from django.template.loader import render_to_string
 from django.utils.safestring import mark_safe
 
-from micawber.compat import string_types
-from micawber.parsers import full_handler, inline_handler, parse_text, \
+from micawber_bs4_classes.compat import string_types
+from micawber_bs4_classes.parsers import full_handler, inline_handler, parse_text, \
     parse_html, extract, extract_html
 
 
@@ -17,7 +17,7 @@ def _load_from_module(path):
     return getattr(module, attr)
 
 
-PROVIDERS = getattr(settings, 'MICAWBER_PROVIDERS', 'micawber.contrib.mcdjango.providers.bootstrap_basic')
+PROVIDERS = getattr(settings, 'MICAWBER_PROVIDERS', 'micawber_bs4_classes.contrib.mcdjango.providers.bootstrap_basic')
 
 providers = _load_from_module(PROVIDERS)
 if isinstance(providers, Callable):
@@ -31,7 +31,7 @@ def django_template_handler(url, response_data, **params):
         response_data.get('provider_name'),
         response_data['type'],
     )
-    template_names = ['micawber/%s.html' % name for name in names if name]
+    template_names = ['micawber_bs4_classes/%s.html' % name for name in names if name]
     return mark_safe(
         render_to_string(
             template_names,

@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.core.cache import cache
 
-from micawber.providers import bootstrap_basic as _bootstrap_basic, bootstrap_embedly as _bootstrap_embedly
+from micawber_bs4_classes.providers import bootstrap_basic as _bootstrap_basic, bootstrap_embedly as _bootstrap_embedly
 
 
 def bootstrap_basic():

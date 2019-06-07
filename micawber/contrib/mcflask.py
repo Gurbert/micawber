@@ -1,5 +1,5 @@
 from flask import Markup
-from micawber import parse_text, parse_html, extract, extract_html
+from micawber_bs4_classes import parse_text, parse_html, extract, extract_html
 
 
 def oembed(s, providers, urlize_all=True, html=False, **params):

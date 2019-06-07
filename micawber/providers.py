@@ -20,9 +20,9 @@ except ImportError:
     import json
     InvalidJson = ValueError
 
-from micawber.exceptions import InvalidResponseException
-from micawber.exceptions import ProviderException
-from micawber.exceptions import ProviderNotFoundException
+from micawber_bs4_classes.exceptions import InvalidResponseException
+from micawber_bs4_classes.exceptions import ProviderException
+from micawber_bs4_classes.exceptions import ProviderNotFoundException
 
 
 class Provider(object):

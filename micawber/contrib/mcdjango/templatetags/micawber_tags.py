@@ -1,1 +1,1 @@
-from micawber.contrib.mcdjango import register
+from micawber_bs4_classes.contrib.mcdjango import register

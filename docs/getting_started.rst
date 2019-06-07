@@ -7,18 +7,18 @@ If you want the dead simple get-me-up-and-running, try the following:
 
 .. code-block:: python
 
-    >>> import micawber
-    >>> providers = micawber.bootstrap_basic() # may take a second
-    >>> print micawber.parse_text('this is a test:\nhttp://www.youtube.com/watch?v=54XHDUOHuzU', providers)
+    >>> import micawber_bs4_classes
+    >>> providers = micawber_bs4_classes.bootstrap_basic() # may take a second
+    >>> print micawber_bs4_classes.parse_text('this is a test:\nhttp://www.youtube.com/watch?v=54XHDUOHuzU', providers)
     this is a test:
     <iframe width="640" height="360" src="http://www.youtube.com/embed/54XHDUOHuzU?fs=1&feature=oembed" frameborder="0" allowfullscreen></iframe>
 
-Using django?  Add ``micawber.contrib.mcdjango`` to your ``INSTALLED_APP``, then
+Using django?  Add ``micawber_bs4_classes.contrib.mcdjango`` to your ``INSTALLED_APP``, then
 in your templates:
 
 .. code-block:: html
 
-    {% load micawber_tags %}
+    {% load micawber_bs4_classes_tags %}
     {# show a flash player for the youtube video #}
     {{ "http://www.youtube.com/watch?v=mQEWI1cn7HY"|oembed }}
 
@@ -28,8 +28,8 @@ template filters, ``oembed`` and ``extract_oembed``:
 .. code-block:: python
 
     from flask import Flask
-    from micawber.providers import bootstrap_basic
-    from micawber.contrib.mcflask import add_oembed_filters
+    from micawber_bs4_classes.providers import bootstrap_basic
+    from micawber_bs4_classes.contrib.mcflask import add_oembed_filters
 
     app = Flask(__name__)
 
@@ -52,9 +52,9 @@ support this, including youtube and flickr.  There is also a 3rd-party service c
 micawber was designed to make it easy to integrate with these APIs.  There are three
 main concepts to grok when using micawber:
 
-* :py:class:`~micawber.providers.Provider` objects
-* :py:class:`~micawber.providers.ProviderRegistry` objects
-* :py:mod:`~micawber.parsers` module and its functions
+* :py:class:`~micawber_bs4_classes.providers.Provider` objects
+* :py:class:`~micawber_bs4_classes.providers.ProviderRegistry` objects
+* :py:mod:`~micawber_bs4_classes.parsers` module and its functions
 
 
 Providers
@@ -68,7 +68,7 @@ Example:
 
 .. code-block:: python
 
-    from micawber.providers import Provider
+    from micawber_bs4_classes.providers import Provider
 
     youtube = Provider('http://www.youtube.com/oembed')
     youtube.request('http://www.youtube.com/watch?v=nda_OSWeyn8')
@@ -91,18 +91,18 @@ video, including the markup for an embeddable player::
      'version': u'1.0',
      'width': 459}
 
-More information can be found in the :py:class:`~micawber.providers.Provider` API docs.
+More information can be found in the :py:class:`~micawber_bs4_classes.providers.Provider` API docs.
 
 ProviderRegistry
 ----------------
 
-The :py:class:`~micawber.providers.ProviderRegistry` is a way of organizing lists
+The :py:class:`~micawber_bs4_classes.providers.ProviderRegistry` is a way of organizing lists
 of providers.  URLs can be requested from the registry and if *any* provider matches
 it will be used, otherwise a ``ProviderException`` will be raised.
 
 The ``ProviderRegistry`` also supports an optional simple caching mechanism.
 
-Here is an excerpt from the code from the :py:func:`micawber.providers.bootstrap_basic` function,
+Here is an excerpt from the code from the :py:func:`micawber_bs4_classes.providers.bootstrap_basic` function,
 which is handy for grabbing a ``ProviderRegistry`` with a handful of basic providers
 pre-populated:
 
@@ -115,15 +115,15 @@ pre-populated:
         pr.register('http://www.hulu.com/watch/\S*', Provider('http://www.hulu.com/api/oembed.json'))
         return pr
 
-As you can see, the :py:meth:`~micawber.providers.ProviderRegistry.register` method takes
+As you can see, the :py:meth:`~micawber_bs4_classes.providers.ProviderRegistry.register` method takes
 two parameters, a regular expression for valid URLs and a ``Provider`` instance.
 
 You can use helper functions to get a populated registry:
 
-* :py:func:`~micawber.providers.bootstrap_basic`
-* :py:func:`~micawber.providers.bootstrap_oembed` - uses oembed.com's official providers list.
-* :py:func:`~micawber.providers.bootstrap_embedly`
-* :py:func:`~micawber.providers.bootstrap_noembed`
+* :py:func:`~micawber_bs4_classes.providers.bootstrap_basic`
+* :py:func:`~micawber_bs4_classes.providers.bootstrap_oembed` - uses oembed.com's official providers list.
+* :py:func:`~micawber_bs4_classes.providers.bootstrap_embedly`
+* :py:func:`~micawber_bs4_classes.providers.bootstrap_noembed`
 
 The ``bootstrap_oembed``, ``bootstrap_embedly``, and ``bootstrap_noembed``
 functions make a HTTP request to the API server asking for a list of supported
@@ -132,12 +132,12 @@ most WSGI applications this will not be an issue, but if you'd like to speed it
 up I suggest fetching the results, storing them in the db or a file, and then
 pulling from there.
 
-More information can be found in the :py:class:`~micawber.providers.ProviderRegistry` API docs.
+More information can be found in the :py:class:`~micawber_bs4_classes.providers.ProviderRegistry` API docs.
 
 Parsers
 -------
 
-The :py:mod:`micawber.parsers` module contains several handy functions for parsing
+The :py:mod:`micawber_bs4_classes.parsers` module contains several handy functions for parsing
 blocks of text or HTML and either:
 
 * replacing links with rich markup
@@ -147,30 +147,30 @@ A quick example:
 
 .. code-block:: python
 
-    import micawber
+    import micawber_bs4_classes
 
-    providers = micawber.bootstrap_basic()
+    providers = micawber_bs4_classes.bootstrap_basic()
 
-    micawber.parse_text('this is a test:\nhttp://www.youtube.com/watch?v=54XHDUOHuzU', providers)
+    micawber_bs4_classes.parse_text('this is a test:\nhttp://www.youtube.com/watch?v=54XHDUOHuzU', providers)
 
 This will result in the following output::
 
     this is a test:
     <iframe width="459" height="344" src="http://www.youtube.com/embed/54XHDUOHuzU?fs=1&feature=oembed" frameborder="0" allowfullscreen></iframe>
 
-You can also parse HTML using the :py:func:`~micawber.parsers.parse_html` function:
+You can also parse HTML using the :py:func:`~micawber_bs4_classes.parsers.parse_html` function:
 
 .. code-block:: python
 
-    micawber.parse_html('<p>http://www.youtube.com/watch?v=54XHDUOHuzU</p>', providers)
+    micawber_bs4_classes.parse_html('<p>http://www.youtube.com/watch?v=54XHDUOHuzU</p>', providers)
 
     # yields the following output:
     <p><iframe width="459" height="344" src="http://www.youtube.com/embed/54XHDUOHuzU?fs=1&amp;feature=oembed" frameborder="0" allowfullscreen="allowfullscreen"></iframe></p>
 
 If you would rather extract metadata, there are two functions:
 
-* :py:func:`~micawber.parsers.extract` (handles text)
-* :py:func:`~micawber.parsers.extract_html` (handles html)
+* :py:func:`~micawber_bs4_classes.parsers.extract` (handles text)
+* :py:func:`~micawber_bs4_classes.parsers.extract_html` (handles html)
 
 The :ref:`API docs <api>` are extensive, so please refer there for a full list of
 parameters and functions.
@@ -192,12 +192,12 @@ Inline representation:
 
 There are two parsers that you will probably use the most:
 
-* :py:func:`~micawber.parsers.parse_text` for text
+* :py:func:`~micawber_bs4_classes.parsers.parse_text` for text
 
   * URLs on their own line are converted into full representations
   * URLs within blocks of text are converted into clickable links
 
-* :py:func:`~micawber.parsers.parse_html` for html
+* :py:func:`~micawber_bs4_classes.parsers.parse_html` for html
 
   * URLs that are already within <a> tags are passed over
   * URLs on their own in block tags are converted into full representations

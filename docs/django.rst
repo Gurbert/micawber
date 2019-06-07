@@ -3,7 +3,7 @@
 Django integration
 ==================
 
-First be sure you have added ``micawber.contrib.mcdjango`` to ``INSTALLED_APPS``
+First be sure you have added ``micawber_bs4_classes.contrib.mcdjango`` to ``INSTALLED_APPS``
 so that we can use the template filters it defines.
 
 .. code-block:: python
@@ -12,23 +12,23 @@ so that we can use the template filters it defines.
 
     INSTALLED_APPS = [
         # ...
-        'micawber.contrib.mcdjango',
+        'micawber_bs4_classes.contrib.mcdjango',
     ]
 
 micawber provides 4 template filters for converting URLs contained within
 text or HTML to rich content:
 
-* :py:func:`~micawber.contrib.mcdjango.oembed` for plain text
-* :py:func:`~micawber.contrib.mcdjango.oembed_html` for html
-* :py:func:`~micawber.contrib.mcdjango.extract_oembed` for extracting url data from plain text
-* :py:func:`~micawber.contrib.mcdjango.extract_oembed_html` for extracting url data from html
+* :py:func:`~micawber_bs4_classes.contrib.mcdjango.oembed` for plain text
+* :py:func:`~micawber_bs4_classes.contrib.mcdjango.oembed_html` for html
+* :py:func:`~micawber_bs4_classes.contrib.mcdjango.extract_oembed` for extracting url data from plain text
+* :py:func:`~micawber_bs4_classes.contrib.mcdjango.extract_oembed_html` for extracting url data from html
 
-These filters are registered in the ``micawber_tags`` library, which can be
+These filters are registered in the ``micawber_bs4_classes_tags`` library, which can be
 invoked in your templates:
 
 .. code-block:: html
 
-    {% load micawber_tags %}
+    {% load micawber_bs4_classes_tags %}
 
     <p>{{ object.body|oembed:"600x600" }}</p>
 
@@ -55,7 +55,7 @@ understand about the parsers:
 Django filter API
 -----------------
 
-.. py:module:: micawber.contrib.mcdjango
+.. py:module:: micawber_bs4_classes.contrib.mcdjango
 
 The following filters are exposed via the :py:mod:`micawber.contrib.mcdjango` module:
 
