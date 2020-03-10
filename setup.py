@@ -7,7 +7,7 @@ f.close()
 
 setup(
     name='micawber_bs4_classes',
-    version='0.4.1',
+    version='0.4.2',
     description='a small library for extracting rich content from urls',
     long_description=readme,
     author='Charles Leifer',
