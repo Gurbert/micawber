@@ -87,7 +87,9 @@ def parse_text_full(text, providers, urlize_all=True, handler=full_handler, **pa
 
     # replace the URLs in order, offsetting the indices each go
     for indx, (start, end, url) in enumerate(matches):
-        if 'provider_name' in replacements and current_app.config['STYLE_EMBED'] == True:
+        if ('provider_name' in replacements
+            and '<iframe' in replacements[url]
+            and current_app.config['STYLE_EMBED'] == True):
             replacement = add_bs4_styling(replacements[url], replacements['provider_name'])
         else:
             replacement = replacements[url]
